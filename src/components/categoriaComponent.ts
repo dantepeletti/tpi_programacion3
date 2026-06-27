@@ -1,6 +1,9 @@
 import type { ICategoria } from "../types/ICategoria.js";
 
-export function renderCategorias(categorias: ICategoria[]): void {
+export function renderCategorias(
+    categorias: ICategoria[],
+    onCategoriaClick: (id: number) => void
+): void {
 
     const listaCategorias = document.querySelector<HTMLUListElement>("#listaCategorias");
 
@@ -14,6 +17,12 @@ export function renderCategorias(categorias: ICategoria[]): void {
 
         li.textContent = categoria.nombre;
         li.dataset.id = categoria.id.toString();
+
+        li.addEventListener("click", () => {
+
+            onCategoriaClick(categoria.id);
+
+        });
 
         listaCategorias.appendChild(li);
 

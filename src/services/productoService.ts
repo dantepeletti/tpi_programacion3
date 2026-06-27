@@ -9,3 +9,13 @@ export async function getProductos(): Promise<IProducto[]> {
 
     return await response.json();
 }
+
+export async function getProductosPorCategoria(idCategoria: number): Promise<IProducto[]> {
+
+    const productos = await getProductos();
+
+    return productos.filter(
+        (producto) => producto.categoria.id === idCategoria
+    );
+
+}
