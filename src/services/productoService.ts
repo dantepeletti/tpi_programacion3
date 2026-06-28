@@ -19,3 +19,13 @@ export async function getProductosPorCategoria(idCategoria: number): Promise<IPr
     );
 
 }
+
+export async function buscarProductos(nombre: string): Promise<IProducto[]> {
+
+    const productos = await getProductos();
+
+    return productos.filter((producto) =>
+        producto.nombre.toLowerCase().includes(nombre.toLowerCase())
+    );
+
+}

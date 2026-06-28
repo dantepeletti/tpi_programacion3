@@ -1,5 +1,5 @@
 import { getCategorias } from "./services/categoriaService.js";
-import { getProductos, getProductosPorCategoria } from "./services/productoService.js";
+import { getProductos, getProductosPorCategoria, buscarProductos } from "./services/productoService.js";
 
 import { renderCategorias } from "./components/categoriaComponent.js";
 import { renderProductos } from "./components/productoComponent.js";
@@ -12,7 +12,15 @@ async function iniciarAplicacion() {
 
         renderCategorias(
             categorias,
-            async (idCategoria: number) => {
+            async (idCategoria) => {
+
+                if (idCategoria === null) {
+
+                    const productos = await getProductos();
+                    renderProductos(productos);
+                    return;
+
+                }
 
                 const productos =
                     await getProductosPorCategoria(idCategoria);
@@ -25,6 +33,32 @@ async function iniciarAplicacion() {
         const productos = await getProductos();
 
         renderProductos(productos);
+
+        const formularioBusqueda =
+        document.querySelector<HTMLFormElement>("#formBusqueda");
+
+        const inputBusqueda =
+            document.querySelector<HTMLInputElement>("#busqueda");
+
+        formularioBusqueda?.addEventListener("submit", async (event) => {
+
+            event.preventDefault();
+
+            const texto = inputBusqueda?.value.trim() ?? "";
+
+            if (texto === "") {
+
+                renderProductos(await getProductos());
+                return;
+
+            }
+
+            const productosEncontrados =
+                await buscarProductos(texto);
+
+            renderProductos(productosEncontrados);
+
+        });
 
     } catch (error) {
 
