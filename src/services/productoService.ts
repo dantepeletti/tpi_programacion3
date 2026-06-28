@@ -9,23 +9,3 @@ export async function getProductos(): Promise<IProducto[]> {
 
     return await response.json();
 }
-
-export async function getProductosPorCategoria(idCategoria: number): Promise<IProducto[]> {
-
-    const productos = await getProductos();
-
-    return productos.filter(
-        (producto) => producto.categoria.id === idCategoria
-    );
-
-}
-
-export async function buscarProductos(nombre: string): Promise<IProducto[]> {
-
-    const productos = await getProductos();
-
-    return productos.filter((producto) =>
-        producto.nombre.toLowerCase().includes(nombre.toLowerCase())
-    );
-
-}
