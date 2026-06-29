@@ -1,5 +1,4 @@
 import { renderCarrito } from "../../components/carritoComponent.js";
-
 import {
     obtenerCarrito,
     obtenerTotalCarrito,
@@ -103,16 +102,11 @@ botonFinalizar?.addEventListener("click", () => {
     if (obtenerCarrito().length === 0) {
 
         alert("El carrito está vacío.");
-
         return;
 
     }
 
-    alert("Compra realizada con éxito.");
-
-    vaciarCarrito();
-
-    actualizarVista();
+    window.location.href = "../client/checkout.html";
 
 });
 

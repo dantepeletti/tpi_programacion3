@@ -60,7 +60,7 @@ export function aumentarCantidad(
     const carrito = obtenerCarrito();
 
     const item = carrito.find(
-        item => item.producto.id === idProducto
+        item => item.producto.id === idProducto 
     );
 
     if (item) {
