@@ -1,5 +1,6 @@
 import { getCategorias } from "./services/categoriaService.js";
 import { getProductos } from "./services/productoService.js";
+import { inicializarUsuarios } from "./services/usuarioService.js";
 
 import { renderCategorias } from "./components/categoriaComponent.js";
 import { renderProductos } from "./components/productoComponent.js";
@@ -38,6 +39,7 @@ async function actualizarProductos(): Promise<void> {
 
 async function iniciarAplicacion() {
 
+    await inicializarUsuarios();
     try {
 
         const categorias = await getCategorias();
