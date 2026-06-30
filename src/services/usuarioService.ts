@@ -68,3 +68,15 @@ export function registrarUsuario(
     guardarUsuarios(usuarios);
 
 }
+
+export function existeMail(
+    mail: string
+): boolean {
+
+    return obtenerUsuarios().some(
+
+        usuario => usuario.mail === mail
+
+    );
+
+}
