@@ -76,3 +76,32 @@ export function actualizarPedido(
     guardarDatos(PEDIDOS_KEY, pedidos);
 
 }
+
+export function editarPedido(
+    pedidoEditado: IPedido
+): void {
+
+    const pedidos =
+        obtenerDatos<IPedido[]>(PEDIDOS_KEY) ?? [];
+
+    const indice =
+        pedidos.findIndex(
+            pedido =>
+                pedido.id === pedidoEditado.id
+        );
+
+    if (indice === -1) {
+
+        return;
+
+    }
+
+    pedidos[indice] =
+        pedidoEditado;
+
+    guardarDatos(
+        PEDIDOS_KEY,
+        pedidos
+    );
+
+}

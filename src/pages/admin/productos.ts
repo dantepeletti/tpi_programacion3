@@ -6,6 +6,10 @@ import {
 } from "../../services/productoService.js";
 
 import {
+    obtenerCategoriasAdmin
+} from "../../services/categoriaService.js";
+
+import {
     renderProductosAdmin
 } from "../../components/productoAdminComponent.js";
 
@@ -29,6 +33,36 @@ const inputDescripcion =
 
 const inputImagen =
     document.querySelector<HTMLInputElement>("#imagen");
+
+const selectCategoria =
+    document.querySelector<HTMLSelectElement>("#categoria");
+
+async function cargarCategorias(): Promise<void> {
+
+    if (!selectCategoria) {
+
+        return;
+
+    }
+
+    const categorias =
+        await obtenerCategoriasAdmin();
+
+    selectCategoria.innerHTML = "";
+
+    categorias.forEach(categoria => {
+
+        selectCategoria.innerHTML += `
+
+            <option value="${categoria.id}">
+                ${categoria.nombre}
+            </option>
+
+        `;
+
+    });
+
+}
 
 async function actualizarVista(): Promise<void> {
 
@@ -62,50 +96,57 @@ function agregarEventos(): void {
         });
 
     document
-    .querySelectorAll(".btn-editar")
-    .forEach(boton => {
+        .querySelectorAll(".btn-editar")
+        .forEach(boton => {
 
-        boton.addEventListener("click", async () => {
+            boton.addEventListener("click", async () => {
 
-            const id = Number(
-                boton.getAttribute("data-id")
-            );
-
-            const productos =
-                await obtenerProductosAdmin();
-
-            const producto =
-                productos.find(
-                    producto => producto.id === id
+                const id = Number(
+                    boton.getAttribute("data-id")
                 );
 
-            if (!producto) {
+                const productos =
+                    await obtenerProductosAdmin();
 
-                return;
+                const producto =
+                    productos.find(
+                        producto => producto.id === id
+                    );
 
-            }
+                if (!producto) {
 
-            inputId!.value =
-                producto.id.toString();
+                    return;
 
-            inputNombre!.value =
-                producto.nombre;
+                }
 
-            inputPrecio!.value =
-                producto.precio.toString();
+                inputId!.value =
+                    producto.id.toString();
 
-            inputStock!.value =
-                producto.stock.toString();
+                inputNombre!.value =
+                    producto.nombre;
 
-            inputDescripcion!.value =
-                producto.descripcion;
+                inputPrecio!.value =
+                    producto.precio.toString();
 
-            inputImagen!.value =
-                producto.imagen;
+                inputStock!.value =
+                    producto.stock.toString();
+
+                inputDescripcion!.value =
+                    producto.descripcion;
+
+                inputImagen!.value =
+                    producto.imagen;
+
+                if (selectCategoria) {
+
+                    selectCategoria.value =
+                        producto.categoria.id.toString();
+
+                }
+
+            });
 
         });
-
-    });
 
 }
 
@@ -115,6 +156,24 @@ formulario?.addEventListener("submit", async (event) => {
 
     const productos =
         await obtenerProductosAdmin();
+
+    const categorias =
+        await obtenerCategoriasAdmin();
+
+    const categoriaSeleccionada =
+        categorias.find(
+            categoria =>
+                categoria.id ===
+                Number(selectCategoria?.value)
+        );
+
+    if (!categoriaSeleccionada) {
+
+        alert("Seleccione una categoría.");
+
+        return;
+
+    }
 
     const id =
         Number(inputId?.value);
@@ -150,7 +209,7 @@ formulario?.addEventListener("submit", async (event) => {
         disponible: true,
 
         categoria:
-            productos[0].categoria
+            categoriaSeleccionada
 
     };
 
@@ -172,6 +231,22 @@ formulario?.addEventListener("submit", async (event) => {
 
     }
 
+    if (selectCategoria) {
+
+        selectCategoria.selectedIndex = 0;
+
+    }
+
     actualizarVista();
 
 });
+
+async function iniciar(): Promise<void> {
+
+    await cargarCategorias();
+
+    await actualizarVista();
+
+}
+
+iniciar();
