@@ -46,3 +46,9 @@ export function guardarPedido(
     guardarDatos(PEDIDOS_KEY, pedidos);
 
 }
+
+export function obtenerPedidos(): IPedido[] {
+
+    return obtenerDatos<IPedido[]>(PEDIDOS_KEY) ?? [];
+
+}
