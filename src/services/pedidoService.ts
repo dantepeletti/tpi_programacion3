@@ -52,3 +52,27 @@ export function obtenerPedidos(): IPedido[] {
     return obtenerDatos<IPedido[]>(PEDIDOS_KEY) ?? [];
 
 }
+
+export function actualizarPedido(
+    pedidoActualizado: IPedido
+): void {
+
+    const pedidos = obtenerPedidos();
+
+    const indice = pedidos.findIndex(
+
+        pedido => pedido.id === pedidoActualizado.id
+
+    );
+
+    if (indice === -1) {
+
+        return;
+
+    }
+
+    pedidos[indice] = pedidoActualizado;
+
+    guardarDatos(PEDIDOS_KEY, pedidos);
+
+}
