@@ -40,6 +40,7 @@ async function actualizarProductos(): Promise<void> {
 async function iniciarAplicacion() {
 
     await inicializarUsuarios();
+
     try {
 
         const categorias = await getCategorias();
