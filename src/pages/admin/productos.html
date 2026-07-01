@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrar Productos</title>
+
+    <link rel="stylesheet" href="/src/css/styles.css">
+</head>
+<body>
+
+    <header>
+
+        <h1>Administrar Productos</h1>
+
+    </header>
+
+    <main>
+
+        <section id="listaProductos">
+
+        </section>
+
+        <br>
+
+        <button id="btnNuevo">
+
+            Nuevo producto
+
+        </button>
+        <form id="formProducto">
+            <input
+                type="hidden"
+                id="id">
+            <input
+                type="text"
+                id="nombre"
+                placeholder="Nombre"
+                required>
+            <input
+                type="number"
+                id="precio"
+                placeholder="Precio"
+                required>
+            <input
+                type="number"
+                id="stock"
+                placeholder="Stock"
+                required>
+            <textarea
+                id="descripcion"
+                placeholder="Descripción"
+                required>
+            </textarea>
+            <input
+                type="text"
+                id="imagen"
+                placeholder="URL Imagen"
+                required>
+            <button type="submit">
+                Guardar producto
+            </button>
+
+        </form>
+
+        <br><br>
+
+        <a href="./admin.html">
+            Volver
+        </a>
+
+    </main>
+
+    <script type="module"src="./productos.ts"></script>
+</body>
+</html>

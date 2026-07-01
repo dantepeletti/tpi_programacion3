@@ -18,11 +18,11 @@ export function renderProductos(productos: IProducto[]): void {
                 <p>${producto.descripcion}</p>
                 <p>$${producto.precio}</p>
                 <button
-                class="btn-agregar"
-                data-id="${producto.id}"
-                >
-                Agregar al carrito
-            </button>
+                    class="btn-agregar"
+                    data-id="${producto.id}"
+                    >
+                    Agregar al carrito
+                </button>
             </article>
         `;
     });

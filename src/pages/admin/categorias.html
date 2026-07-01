@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Administrar Categorías
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/src/css/styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>
+            Administrar Categorías
+        </h1>
+    </header>
+
+    <main>
+
+        <section id="listaCategorias">
+
+        </section>
+
+        <hr>
+
+        <form id="formCategoria">
+
+            <input
+                type="hidden"
+                id="id">
+
+            <input
+                type="text"
+                id="nombre"
+                placeholder="Nombre"
+                required>
+
+            <textarea
+                id="descripcion"
+                placeholder="Descripción"
+                required>
+            </textarea>
+
+            <button type="submit">
+                Guardar categoría
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="./admin.html">
+            Volver
+        </a>
+
+    </main>
+
+    <script type="module"src="./categorias.ts"></script>
+</body>
+</html>
