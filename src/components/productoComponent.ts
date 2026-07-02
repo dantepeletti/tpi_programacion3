@@ -15,8 +15,8 @@ export function renderProductos(productos: IProducto[]): void {
             <article class="producto">
                 <img src="${producto.imagen}" alt="${producto.nombre}">
                 <h3>${producto.nombre}</h3>
-                <p>${producto.descripcion}</p>
-                <p>$${producto.precio}</p>
+                <p class="descripcion">${producto.descripcion}</p>
+                <p class="precio">$${producto.precio}</p>
                 <button
                     class="btn-agregar"
                     data-id="${producto.id}"
