@@ -1,0 +1,35 @@
+:root{
+    --color-primary:#ff5e00;
+    --color-primary-hover:#e65100;
+
+    --color-success:#4CAF50;
+    --color-danger:#d32f2f;
+
+    --color-background:#f5f5f5;
+    --color-card:#ffffff;
+
+    --color-text:#333333;
+
+    --shadow:
+        0px 4px 12px rgba(0,0,0,.15);
+
+    --radius:12px;
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:var(--color-background);
+
+    color:var(--color-text);
+
+}
